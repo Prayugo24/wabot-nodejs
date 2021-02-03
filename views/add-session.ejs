@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Add Session Barcode</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <style>
+    
+    
+    .center {
+      margin: auto;
+      width: 50%;
+      border: 3px solid green;
+      padding: 10px;
+    }
+  </style>
+  
+</head>
+<body>
+    <div class="table-data">
+    <h2 class="text-center">Add Session Barcode</h2>
+    <div class="row text-center">
+      
+        <div class="col-md-12">
+          <div id='loader' style='display: none;' >
+            <img src='/assets/image/reload-small.gif' width='200px' height='200px'>
+          </div>
+          <form id="formoid" action="" title="" method="get">
+            <div>
+              <label class="title">Session Name</label>
+              <input type="text" id="session" name="session">
+            </div>
+            <div>
+              <input class="btn btn-primary" type="submit" id="submitSession" name="submitSession" value="Save">
+            </div>
+          </form>
+          <div id="result"></div>
+        </div>
+    </div>
+    
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script language="javascript">
+        $(function () {
+          $('form').on('submit', function (e) {
+            var urls = document.URL
+            urls = urls.replace("viewAddSession","")
+            var session = $("#session" ).val();
+            $.ajax({
+              type: 'GET',
+              url: urls+"addSession?session="+session,
+              success: function (res) {
+                $("#loader").show();
+                $("#formoid").hide();
+                console.log(urls);
+                setTimeout(function(){ window.location = urls+"ditokocom"; }, 20000);
+              },
+              error: function(){
+                alert("Cannot get data");
+                console.log('error');
+              }
+            });
+            e.preventDefault();
+
+          });
+          });
+    </script>`
+</body>
+</html>

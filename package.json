@@ -1,0 +1,53 @@
+{
+  "name": "wachats",
+  "version": "1.0.0",
+  "description": "wa bot chats cs",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/khoirulh1610/wachats.git"
+  },
+  "keywords": [
+    "wa",
+    "bot",
+    "whatsapp",
+    "api"
+  ],
+  "author": "khoirulh1610@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/khoirulh1610/wachats/issues"
+  },
+  "homepage": "https://gitlab.com/khoirulh1610/wachats#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "emoji-name-map": "^1.2.9",
+    "emoji-strip": "^1.0.1",
+    "emoji-unicode": "^2.0.1",
+    "express": "^4.17.1",
+    "find-process": "^1.4.3",
+    "fs": "0.0.1-security",
+    "fs-backwards-stream": "^1.0.0",
+    "mime-types": "^2.1.27",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.32",
+    "multer": "^1.4.2",
+    "mysql": "^2.18.1",
+    "ps": "^1.0.0",
+    "ps-node": "^0.1.6",
+    "public-ip": "^4.0.2",
+    "qrcode": "^1.4.4",
+    "qrcode-terminal": "^0.12.0",
+    "querystring": "^0.2.0",
+    "request": "^2.88.2",
+    "socket.io": "^3.0.4",
+    "venom-bot": "^2.2.3",
+    "whatsapp-web.js": "^1.8.2"
+  }
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>List Barcode Whatsapp</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <style>
+    .add_session{
+      margin-left: 8%;
+      margin-bottom: 10px;
+    }
+    .table td {
+      text-align: center;     
+    }
+  </style>
+  
+</head>
+<body>
+    <div class="table-data">
+    <h2 class="text-center">List Barcode Whatsapp</h2>
+    <a class="btn btn-primary add_session" href="/viewAddSession" > Add Session</a>  
+    <div class="row justify-content-center">
+      
+        <div class="col-md-10">
+            <table  class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Name Session</th>
+                      <th scope="col">No Hp</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Scan</th>
+                      <th scope="col">InLog</th>
+                      <th scope="col">OutLog</th>
+                      <th scope="col">Delete Session</th>
+                      <th scope="col">Delete Message</th>
+                    </tr>
+                  </thead>
+                <tbody>
+                    <%
+                    if(userData.length!=0){
+                    var i=1;
+                    userData.forEach(function(data){
+                        var barcodeName = data.nameSession; 
+                        var noHp        = data.noHp; 
+                        var status        = data.status; 
+                        var file_scan        = data.file_scan; 
+                    %>
+                    <tr>
+                        <td><%=i; %></td>
+                        <td><%=barcodeName %></td>
+                        <td><%=noHp %></td>
+                        <td><%=status %></td>
+                        <td><a class="btn btn-primary" target="_blank" href=<%= "/GetBarcode?barcode="+barcodeName+".html" %> ><i class="fa fa-qrcode" aria-hidden="true"></i></a></td>
+                        <td><a class="btn btn-success" target="_blank" href=<%= "/LogsIncoming?Logs="+barcodeName%> > <i class="fa fa-history"></i></a></td>
+                        <td><a class="btn btn-info" target="_blank" href=<%= "/LogsOutgoing?Logs="+barcodeName%> ><i class="fa fa-history"></i></a></td>
+                        <td>
+                          <button class="btn btn-danger" onclick="deleteSession('<%=barcodeName %>')"><i class="icon-trash"></i></button></button>
+                        </td>
+                        <td>
+                          <button class="btn btn-danger" onclick="deleteMessageDelay('<%=barcodeName %>')"><i class="icon-trash"></i></button></button>
+                        </td>
+                    </tr>
+                    <%  i++; }) %>
+                    <% } else{ %>
+                        <tr>
+                            <td colspan="7">No Data Found</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script language="javascript">
+        setInterval(function(){
+          window.location.reload(1);
+        }, 5000);
+        function deleteSession(session) {
+          // console.log(session);
+          var url = document.URL
+          url = url.replace("ditokocom","")
+          $.ajax({
+            url: url+"DeleteBarcode?session="+session,
+            type: 'GET',
+            success: function(res) {
+              console.log(res);
+              Swal.fire(
+                'Delete Session Succes',
+                'You clicked the button!',
+                'success'
+              ).then((value) => {
+                window.location.reload(1);
+              });
+            }
+          }); 
+        }
+        function deleteMessageDelay(session) { 
+          var url = document.URL
+          url = url.replace("ditokocom","")
+          $.ajax({
+            url: url+"DeleteMessageDelay?session="+session,
+            type: 'GET',
+            success: function(res) {
+              Swal.fire(
+                'Delete Message Succes',
+                'You clicked the button!',
+                'success'
+              ).then((value) => {
+                window.location.reload(1);
+              });
+              
+            }
+          }); 
+          
+        }
+    </script>`
+</body>
+</html>
